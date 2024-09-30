@@ -7,6 +7,7 @@
 <body>
 <h1>sub9 contents</h1>
 <p>${some1}</p>
+<p>${param.price}</p>
 
 <%-- 포함되는(sub10) jsp에 값을 전달 하는 방법 --%>
 <%-- 1. request parameter 이용 --%>

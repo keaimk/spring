@@ -1,5 +1,6 @@
 package com.example.spring.controller;
 
+import com.example.spring.dto.c24.Product;
 import com.example.spring.dto.c24.Customer;
 import com.example.spring.dto.c24.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +64,6 @@ public class Controller24 {
                 customer.setName(name);
                 customer.setContactName(contact);
                 customer.setAddress(address);
-
                 list.add(customer);
             }
 
@@ -85,21 +85,48 @@ public class Controller24 {
         try (con; stmt; rs) {
             List<Employee> list = new ArrayList<>();
             while (rs.next()) {
-                String employeeID = rs.getString("EmployeeID");
-                String firstname = rs.getString("FirstName");
-                String lastname = rs.getString("LastName");
-                String birthdate = rs.getString("BirthDate");
+//                String employeeID = rs.getString("EmployeeID");
+//                String firstname = rs.getString("FirstName");
+//                String lastname = rs.getString("LastName");
+//                String birthdate = rs.getString("BirthDate");
 
                 Employee employee = new Employee();
-                employee.setEmployeeID(employeeID);
-                employee.setFirstName(firstname);
-                employee.setLastName(lastname);
-                employee.setBirthDate(birthdate);
-
+                employee.setEmployeeID(rs.getString(1));
+                employee.setFirstName(rs.getString(2));
+                employee.setLastName(rs.getString(3));
+                employee.setBirthDate(rs.getString(4));
                 list.add(employee);
             }
 
             model.addAttribute("employeeList", list);
+        }
+    }
+
+    // 상품번호, 상품명, 단위, 가격 을 상품(Products)테이블에서 조회 후 출력
+    // ProductID, ProductName, Unit, Price
+    // 4번째 메소드, jsp, javaBean(dto) 작성
+
+    @GetMapping("sub4")
+    public void sub4(Model model) throws SQLException {
+        String sql = """
+                SELECT ProductID, ProductName, Unit, Price
+                FROM Products
+                """;
+        Connection con = dataSource.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        try (con; stmt; rs) {
+            List<Product> list = new ArrayList<>();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getString(1));
+                product.setName(rs.getString(2));
+                product.setUnit(rs.getString(3));
+                product.setPrice(rs.getString(4));
+                list.add(product);
+            }
+
+            model.addAttribute("productList", list);
         }
     }
 }

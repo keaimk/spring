@@ -15,7 +15,6 @@ public class Controller23 {
     @GetMapping("sub1")
     public void sub1(Model model) throws SQLException {
         String sql = "SELECT FirstName FROM Employees";
-
         String databaseUrl = "jdbc:mariadb://localhost:3306/w3schools";
         String databaseUserName = "root";
         String databasePassWord = "1234";
@@ -44,14 +43,11 @@ public class Controller23 {
 
             model.addAttribute("nameList", names);
         }
-
-
     }
 
     @GetMapping("sub2")
     public void sub2(Model model) throws SQLException {
         String sql = "SELECT CustomerName FROM Customers";
-
         String url = "jdbc:mariadb://localhost:3306/w3schools";
         String userName = "root";
         String password = "1234";
@@ -79,7 +75,6 @@ public class Controller23 {
     @GetMapping("sub3")
     public void sub3(Model model) throws SQLException {
         String sql = "SELECT ProductName FROM Products";
-
         String url = "jdbc:mariadb://localhost:3306/w3schools";
         String userName = "root";
         String password = "1234";
@@ -93,6 +88,7 @@ public class Controller23 {
         try (con; stmt; rs) {
             List<String> list = new ArrayList<>();
             while (rs.next()) {
+
                 // 실행 결과 가공
                 String name = rs.getString("ProductName");
                 list.add(name);
@@ -102,4 +98,55 @@ public class Controller23 {
         }
     }
 
+    //    고객이 있는 국가명들 조회
+    @GetMapping("sub4")
+    public void sub4(Model model) throws SQLException {
+        String sql = """
+                SELECT DISTINCT Country
+                FROM Customers
+                """;
+        String url = "jdbc:mariadb://localhost:3306/w3schools";
+        String userName = "root";
+        String password = "1234";
+        Connection con = DriverManager.getConnection(url, userName, password);
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        try (con; stmt; rs) {
+            List<String> list = new ArrayList<>();
+            while (rs.next()) {
+                String name = rs.getString("Country");
+                list.add(name);
+            }
+
+            model.addAttribute("countryList", list);
+        }
+    }
+
+//    공급자(Suppliers) 테이블 조회해서 국가명 목록 출력하기
+//    sub4.jsp 재사용하기
+
+    @GetMapping("sub5")
+    public String sub5(Model model) throws SQLException {
+        String sql = """
+                SELECT DISTINCT Country
+                FROM Suppliers
+                """;
+        String url = "jdbc:mariadb://localhost:3306/w3schools";
+        String userName = "root";
+        String password = "1234";
+        Connection con = DriverManager.getConnection(url, userName, password);
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        try (con; stmt; rs) {
+            List<String> list = new ArrayList<>();
+            while (rs.next()) {
+                String name = rs.getString("country");
+                list.add(name);
+            }
+
+            model.addAttribute("countryList", list);
+
+            return "main23/sub4";
+        }
+    }
 }

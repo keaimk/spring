@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 
+import java.util.Arrays;
+
 @Controller
 @RequestMapping("main19")
 public class Controller19 {
@@ -39,5 +41,15 @@ public class Controller19 {
         System.out.println("food = " + food);
         System.out.println("name = " + name);
         System.out.println("memo = " + memo);
+    }
+
+    @RequestMapping("sub5")
+    public void sub5(String[] city) {
+        System.out.println("city = " + Arrays.toString(city));
+    }
+
+    @RequestMapping("sub6")
+    public void sub6(Boolean accept) {
+        System.out.println("accept = " + accept);
     }
 }

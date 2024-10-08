@@ -31,6 +31,7 @@ WHERE Country = 'spain';
 
 # 상파울루(São Paulo)에 있는 고객들(Customers)
 SELECT *
+
 FROM Customers
 WHERE City = 'São Paulo';
 

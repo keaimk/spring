@@ -34,6 +34,12 @@
     </tbody>
 </table>
 <div style="margin: 10px;">
+    <c:if test="${currentPageNumber > 1}">
+        <c:url value="/main27/sub6" var="pageLink">
+            <c:param name="page" value="1"/>
+        </c:url>
+        <a href="${pageLink}">&lt;&lt; 처음</a>
+    </c:if>
     <c:if test="${not empty prevPageNumber}">
         <c:url value="/main27/sub6" var="link">
             <c:param name="page" value="${prevPageNumber}"></c:param>
@@ -53,6 +59,12 @@
             <c:param name="page" value="${nextPageNumber}"></c:param>
         </c:url>
         <a href="${link}">다음 &gt;</a>
+    </c:if>
+    <c:if test="${currentPageNumber < lastPageNumber}">
+        <c:url value="/main27/sub6" var="pageLink">
+            <c:param name="page" value="${lastPageNumber}"/>
+        </c:url>
+        <a href="${pageLink}">맨끝 &gt;&gt;</a>
     </c:if>
 </div>
 </body>

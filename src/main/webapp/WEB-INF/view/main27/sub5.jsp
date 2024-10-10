@@ -37,16 +37,13 @@
     </c:forEach>
     </tbody>
 </table>
-
 <div style="margin: 10px;">
-
     <c:if test="${currentPageNumber > 1}">
         <c:url value="/main27/sub5" var="pageLink">
             <c:param name="page" value="1"/>
         </c:url>
         <a href="${pageLink}">&lt;&lt; 처음</a>
     </c:if>
-
     <c:if test="${not empty prevPageNumber}">
         <c:url value="/main27/sub5" var="pageLink">
             <c:param name="page" value="${prevPageNumber}"/>
@@ -54,14 +51,12 @@
         <a href="${pageLink}">&lt; 이전</a>
     </c:if>
     <c:forEach begin="${beginPageNumber}" end="${endPageNumber}" var="pageNumber">
-
         <%--
         link
         1페이지 : /main27/sub5?page=1
         2페이지 : /main27/sub5?page=2
         3페이지 : /main27/sub5?page=3
             --%>
-
         <c:url value="/main27/sub5" var="pageLink">
             <c:param name="page" value="${pageNumber}"/>
         </c:url>
@@ -75,7 +70,6 @@
         </c:url>
         <a href="${pageLink}">다음 &gt;</a>
     </c:if>
-
     <c:if test="${currentPageNumber < lastPageNumber}">
         <c:url value="/main27/sub5" var="pageLink">
             <c:param name="page" value="${lastPageNumber}"/>

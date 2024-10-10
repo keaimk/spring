@@ -2,10 +2,15 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
 <head>
+    <style>
+        .active {
+            background-color: yellow;
+        }
+    </style>
     <title>Title</title>
 </head>
 <body>
-<h3>고객 조회 (페이징)</h3>
+<h3>고객 목록 (페이징)</h3>
 <table>
     <thead>
     <tr>
@@ -34,19 +39,49 @@
 </table>
 
 <div style="margin: 10px;">
-    <c:forEach begin="1" end="20" var="pageNumber">
+
+    <c:if test="${currentPageNumber > 1}">
+        <c:url value="/main27/sub5" var="pageLink">
+            <c:param name="page" value="1"/>
+        </c:url>
+        <a href="${pageLink}">&lt;&lt; 처음</a>
+    </c:if>
+
+    <c:if test="${not empty prevPageNumber}">
+        <c:url value="/main27/sub5" var="pageLink">
+            <c:param name="page" value="${prevPageNumber}"/>
+        </c:url>
+        <a href="${pageLink}">&lt; 이전</a>
+    </c:if>
+    <c:forEach begin="${beginPageNumber}" end="${endPageNumber}" var="pageNumber">
+
         <%--
         link
         1페이지 : /main27/sub5?page=1
         2페이지 : /main27/sub5?page=2
         3페이지 : /main27/sub5?page=3
-        --%>
+            --%>
 
         <c:url value="/main27/sub5" var="pageLink">
             <c:param name="page" value="${pageNumber}"/>
         </c:url>
-        <a href="${pageLink}">${pageNumber}</a>
+        <span class="${currentPageNumber == pageNumber ? 'active' : ''}">
+            <a href="${pageLink}">${pageNumber}</a>
+        </span>
     </c:forEach>
+    <c:if test="${not empty nextPageNumber}">
+        <c:url value="/main27/sub5" var="pageLink">
+            <c:param name="page" value="${nextPageNumber}"/>
+        </c:url>
+        <a href="${pageLink}">다음 &gt;</a>
+    </c:if>
+
+    <c:if test="${currentPageNumber < lastPageNumber}">
+        <c:url value="/main27/sub5" var="pageLink">
+            <c:param name="page" value="${lastPageNumber}"/>
+        </c:url>
+        <a href="${pageLink}">맨끝 &gt;&gt;</a>
+    </c:if>
 </div>
 </body>
 </html>

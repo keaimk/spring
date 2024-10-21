@@ -106,18 +106,26 @@ public class Controller29 {
     // my_table16 생성
     // sub6 메소드 완성
     @PostMapping("sub6")
-
-
     public void sub6(String title,
-                     String price,
-                     String score,
-                     String published,
-                     String inserted) throws SQLException {
+                     Integer price,
+                     Double score,
+                     LocalDate published,
+                     LocalDateTime inserted) throws SQLException {
         String sql = """
                 INSERT INTO db1.my_table16
                 (title, price, score, published, inserted)
                 VALUES
                 (?, ?, ?, ?, ?)
                 """;
+        Connection conn = dataSource.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        try (conn; ps) {
+            ps.setString(1, title);
+            ps.setInt(2, price);
+            ps.setDouble(3, score);
+            ps.setDate(4, Date.valueOf(published));
+            ps.setTimestamp(5, Timestamp.valueOf(inserted));
+            ps.executeUpdate();
+        }
     }
 }

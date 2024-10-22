@@ -50,3 +50,10 @@ SELECT *
 FROM my_table22;
 INSERT INTO my_table22
     VALUE (NULL, 'a');
+INSERT INTO my_table22
+    VALUE (NULL, 'b');
+INSERT INTO my_table22
+    VALUE (NULL, 'b');
+INSERT INTO my_table22
+    VALUE ('a', NULL);
+DESC my_table22;

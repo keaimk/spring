@@ -25,7 +25,7 @@
 <div class="mx-5">Culpa et pariatur quo velit?</div>
 <div class="ms-2">Alias animi doloribus quod voluptas.</div>
 <div class="mx-3 px-4">Dicta necessitatibus officiis possimus quidem.</div>
-<div>At delectus quia tempore voluptatibus.</div>
+<div class="px-5">At delectus quia tempore voluptatibus.</div>
 <div>Eveniet magnam numquam ratione ut!</div>
 <div>Hic ipsa non quae vero?</div>
 <div>Adipisci cum deleniti incidunt natus.</div>

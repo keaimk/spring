@@ -29,6 +29,9 @@
 <div style="color: pink; padding: 10%;">
     <i class="fa-solid fa-heart"></i>
 </div>
+<div style="color: yellow;">
+    <i class="fa-solid fa-star"></i>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

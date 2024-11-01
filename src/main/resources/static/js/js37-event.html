@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn1">버튼1</button>
+<button id="btn2">버튼2</button>
+<ul id="list1"></ul>
+<script>
+  let a = document.querySelector("#btn1");
+  a.addEventListener("click", function () {
+    let l = document.querySelector("#lis1");
+    let i = document.createElement("li");
+    i.innerHTML = "홀";
+    l.append(i);
+  });
+  // 두 번째 버튼 클릭시 ul에 <li>짝</li> 가 마지막에 추가되도록 코드 작성
+  let b = document.querySelector("#btn2");
+  b.addEventListener("click", function () {
+    let c = document.querySelector("#list1");
+    let d = document.createElement("li")
+    d.innerHTML = "짝";
+    c.append(d);
+  })
+</script>
+</body>
+</html>

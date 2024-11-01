@@ -8,7 +8,7 @@
 <script>
   let a = 3;
   let b = a;
-  console.log(a, b);
+  console.log(a, b); // 3 3
 
   a = 5;
   console.log(a, b); // 5 3
@@ -27,11 +27,11 @@
   let e = {city: "paris"};
   console.log(e.city); // "paris"
   fun1(e);
-  console.log(e.city);
+  console.log(e.city); // "seoul"
 
   let f = {
-    name: "son",
-    info: {
+    name: "son", // 원시타입이라 값이 복사는 되지만 독립적이다.
+    info: { // 객체타입이라 참조가 복사되므로, 동일한 객체를 가리키게 된다.
       height: 200,
       weight: 300
     }
@@ -50,11 +50,11 @@
 
   f.name = "lee";
   console.log(f.name); // lee
-  console.log(g.name); // son
+  console.log(g.name); // son (얘는 독립적이라 그대로 son임)
 
   f.info.height = 2000;
   console.log(f.info.height); // 2000
-  console.log(g.info.height); // 2000
+  console.log(g.info.height); // 2000 (그래서 얘는 객체 타입이라 동일한 객체인 2000임)
 </script>
 </body>
 </html>

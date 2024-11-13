@@ -13,7 +13,6 @@ public class ApiController8 {
     @PostMapping("sub1")
     public void method1(@RequestParam String city,
                         @RequestParam String country,
-
                         // 업로드되는 파일 타입
                         @RequestParam MultipartFile file) {
         System.out.println("city = " + city);
@@ -41,6 +40,33 @@ public class ApiController8 {
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @PostMapping("sub2")
+    public void method2(@RequestParam String name,
+                        @RequestParam String age,
+                        @RequestParam MultipartFile attached) throws IOException {
+        System.out.println("name = " + name);
+        System.out.println("age = " + age);
+        System.out.println("attached = " + attached.getOriginalFilename());
+
+        attached.transferTo(new File("C:/Temp/" + attached.getOriginalFilename()));
+    }
+
+    @PostMapping("sub3")
+    public void method3(@RequestParam String title,
+                        @RequestParam(name = "files[]") MultipartFile[] attached) throws IOException {
+        for (MultipartFile file : attached) {
+            file.transferTo(new File("C:/Temp/" + file.getOriginalFilename()));
+        }
+    }
+
+    @PostMapping("sub4")
+    public void method4(@RequestParam String name,
+                        @RequestParam(name = "files[]") MultipartFile[] attached) throws IOException {
+        for (MultipartFile file : attached) {
+            file.transferTo(new File("C:/Temp/" + file.getOriginalFilename()));
         }
     }
 }
